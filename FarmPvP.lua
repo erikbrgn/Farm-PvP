@@ -221,3 +221,28 @@ frame:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
 frame:SetScript("OnEvent", frame.OnEvent)
 
 frame:TotalUpgradeCost()
+
+SLASH_FARMPVP1, SLASH_FARMPVP2 = '/fp', '/farmpvp';
+local function handler(msg, editBox)
+    if msg == 'show' then
+		frame:Show()
+	elseif msg == 'hide' then
+		frame:Hide()
+	elseif msg == 'calc' or msg == 'calculate' then
+		frame:TotalUpgradeCost()
+	elseif msg == 'lock' then
+		if (frame:IsMovable()) then
+			frame:SetMovable(false)
+			frame:EnableMouse(false)
+			print("Farm PvP is now locked. Type /fp lock again to unlock it.")
+		else
+			frame:SetMovable(true)
+			frame:EnableMouse(true)
+			print("Farm PvP is now unlocked. Type /fp lock again to lock it.")
+		end
+	else 
+		print("Farm PvP")
+		print("A list of commands. Start with /fp or /farmpvp and then \n- show \n- hide \n- calc or calculate \n- lock")
+    end
+end
+SlashCmdList["FARMPVP"] = handler;
