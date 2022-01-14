@@ -2,6 +2,7 @@ local _G = _G
 local _, FP = ...
 _G.FarmPvP = FP
 
+local name = "Farm |cFFC41F3BP|rv|cFF0070DEP|r"
 local version = "v1.0.0"
 
 local totalConquestCost = 0
@@ -11,7 +12,7 @@ local totalHonorCost = 0
 local highestWeeklyRating = FP:GetHighestWeeklyRating()
 local highestWeeklyRank = FP:GetHighestWeeklyRank(highestWeeklyRating)
 
-if IsAddOnLoaded('Farm PvP') then print("Farm PvP by Lyci, ", version) end
+if IsAddOnLoaded('Farm PvP') then print(name, " by Lyci, ", version) end
 
 local frame = CreateFrame("Frame", "Farm PvP", UIParent, "BackdropTemplate")
 frame:SetFrameStrata("BACKGROUND")
@@ -34,7 +35,7 @@ frame.title = frame:CreateFontString(nil,"ARTWORK")
 frame.title:SetFont("Fonts\\ARIALN.ttf", 16, "OUTLINE")
 frame.title:SetTextColor(1, 1, 1)
 frame.title:SetPoint("CENTER", frame.titleBG, 0, 13)
-frame.title:SetText("Farm PvP")
+frame.title:SetText(name)
 
 frame.version = frame:CreateFontString(nil, "ARTWORK") 
 frame.version:SetFont("Fonts\\ARIALN.ttf", 10, "OUTLINE")
@@ -234,14 +235,14 @@ local function handler(msg, editBox)
 		if (frame:IsMovable()) then
 			frame:SetMovable(false)
 			frame:EnableMouse(false)
-			print("Farm PvP is now locked. Type /fp lock again to unlock it.")
+			print(name, " is now locked. Type /fp lock again to unlock it.")
 		else
 			frame:SetMovable(true)
 			frame:EnableMouse(true)
-			print("Farm PvP is now unlocked. Type /fp lock again to lock it.")
+			print(name, " is now unlocked. Type /fp lock again to lock it.")
 		end
 	else 
-		print("Farm PvP")
+		print(name)
 		print("A list of commands. Start with /fp or /farmpvp and then \n- show \n- hide \n- calc or calculate \n- lock")
     end
 end
