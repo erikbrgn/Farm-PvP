@@ -1,6 +1,6 @@
 local _G = _G
-local _, FH = ...
-_G.FarmHonor = FH
+local _, FP = ...
+_G.FarmPvP = FP
 
 local version = "v1.0.0"
 
@@ -8,10 +8,10 @@ local totalConquestCost = 0
 local totalWeeklyHonorCost = 0
 local totalHonorCost = 0
 
-local highestWeeklyRating = FH:GetHighestWeeklyRating()
-local highestWeeklyRank = FH:GetHighestWeeklyRank(highestWeeklyRating)
+local highestWeeklyRating = FP:GetHighestWeeklyRating()
+local highestWeeklyRank = FP:GetHighestWeeklyRank(highestWeeklyRating)
 
-if IsAddOnLoaded('FarmHonor') then print("Farm PvP by Lyci, ", version) end
+if IsAddOnLoaded('Farm PvP') then print("Farm PvP by Lyci, ", version) end
 
 local frame = CreateFrame("Frame", "Farm PvP", UIParent, "BackdropTemplate")
 frame:SetFrameStrata("BACKGROUND")
@@ -63,7 +63,7 @@ frame.remaining:SetText("Remaining for")
 
 -- TOTAL CONQUEST FOR FULL UNRANKED
 frame.conquestRankTexture = frame:CreateTexture(nil, "ARTWORK")
-frame.conquestRankTexture:SetTexture(FH.RanksIconMapping[1])
+frame.conquestRankTexture:SetTexture(FP.RanksIconMapping[1])
 frame.conquestRankTexture:SetPoint("LEFT", frame, 45, 90)
 frame.conquestRankTexture:SetScale(0.5)
 
@@ -83,7 +83,7 @@ frame.conquestTexture:SetPoint("RIGHT", frame.conquest, 75, 0)
 
 -- TOTAL HONOR FOR HIGHEST WEEKLY RANK
 frame.honorWeeklyTotalRankTexture = frame:CreateTexture(nil, "ARTWORK")
-frame.honorWeeklyTotalRankTexture:SetTexture(FH.RanksIconMapping[highestWeeklyRank])
+frame.honorWeeklyTotalRankTexture:SetTexture(FP.RanksIconMapping[highestWeeklyRank])
 frame.honorWeeklyTotalRankTexture:SetPoint("LEFT", frame, 45, -25)
 frame.honorWeeklyTotalRankTexture:SetScale(0.5)
 
@@ -152,8 +152,8 @@ function frame:TotalUpgradeCost()
 	totalWeeklyHonorCost = -honorInfo.quantity;
 	totalHonorCost = -honorInfo.quantity;
 
-	local highestWeeklyRating = FH:GetHighestWeeklyRating()
-	local highestWeeklyRank = FH:GetHighestWeeklyRank(highestWeeklyRating)
+	local highestWeeklyRating = FP:GetHighestWeeklyRating()
+	local highestWeeklyRank = FP:GetHighestWeeklyRank(highestWeeklyRating)
 
 	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Wrist", "Waist", "Legs", "Feet", "Hands", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand"}
 	for index, slotName in ipairs(slots) do
@@ -167,8 +167,8 @@ function frame:TotalUpgradeCost()
 				local itemQuality = item:GetItemQuality()
 				-- @todo: Refactor into a better way of extracting PvP items.
 				if itemName:startswith("Unchained Gladiator's") then
-					local itemRank = FH.RanksItemLevelTable[ilvl]
-					local itemUpgradeCostTable = FH.ItemsUpgradeCostTable[slotName]
+					local itemRank = FP.RanksItemLevelTable[ilvl]
+					local itemUpgradeCostTable = FP.ItemsUpgradeCostTable[slotName]
 					if itemUpgradeCostTable then
 						-- Total honor cost to full Duelist gear.
 						for i = itemRank + 1, #(itemUpgradeCostTable), 1 do
@@ -187,7 +187,7 @@ function frame:TotalUpgradeCost()
 					slots[index] = nil
 				
 				else
-					totalConquestCost = totalConquestCost + FH.ItemsUpgradeCostTable[slotName][1]
+					totalConquestCost = totalConquestCost + FP.ItemsUpgradeCostTable[slotName][1]
 				end
 			end)
 		end

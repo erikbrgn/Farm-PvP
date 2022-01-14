@@ -1,7 +1,7 @@
 local _G = _G
-local _, FH = ...
+local _, FP = ...
 
-FH.ItemsUpgradeCostTable = {
+FP.ItemsUpgradeCostTable = {
 	--First index is always conquest cost.
 	["Head"] = {875, 775, 925, 1075, 1225, 1375, 1525, 1825},
 	["Neck"] = {525, 450, 550, 650, 725, 825, 925, 1100},
@@ -21,7 +21,7 @@ FH.ItemsUpgradeCostTable = {
 	["SecondaryHand"] = {900, 775, 925, 1075, 1225, 1375, 1525, 1825}
 }
 
-FH.RanksItemLevelTable = {
+FP.RanksItemLevelTable = {
 	[220] = 1,
 	[226] = 2,
 	[229] = 3,
@@ -33,7 +33,7 @@ FH.RanksItemLevelTable = {
 	[249] = 9,
 }
 
-FH.RanksRatingIntervals = {
+FP.RanksRatingIntervals = {
 	[1] = 0,
 	[2] = 1000,
 	[3] = 1200,
@@ -45,7 +45,7 @@ FH.RanksRatingIntervals = {
 	[9] = 2400,
 }
 
-FH.RanksIconMapping = {
+FP.RanksIconMapping = {
 	[1] = "interface\\pvpframe\\icons\\ui_rankedpvp_01_small",
 	[2] = "interface\\pvpframe\\icons\\ui_rankedpvp_02_small",
 	[3] = "interface\\pvpframe\\icons\\ui_rankedpvp_02_small",
