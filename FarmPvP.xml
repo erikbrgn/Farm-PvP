@@ -45,6 +45,26 @@
 						</Anchor>
 					</Anchors>                        
 				</Texture>
+				<Texture name="$parent_numberSix" file="Interface\Timer\BigTimerNumbers" scale="0.15" hidden="true">
+					<TexCoords left="0.5" right="0.8" top="0.35" bottom="0.65"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="-100" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                 
+				</Texture>
+				<Texture name="$parent_numberZero" file="Interface\Timer\BigTimerNumbers" scale="0.15" hidden="true">
+					<TexCoords left="0" right="0.3" top="0" bottom="0.32"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="250" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                 
+				</Texture>
                 <Texture name="$parent_conquestRankTexture" file="interface\pvpframe\icons\ui_rankedpvp_01_small" scale="0.5">
 					<Anchors>
 						<Anchor point="LEFT">
@@ -175,11 +195,30 @@
                         </Anchor>
 					</Anchors>
 				</FontString>
-                <FontString name="$parent_Remaining" inherits="GameFontNormal" text="Remaining for">
+                <FontString name="$parent_Remaining" inherits="GameFontNormalLarge" text="Remaining for">
 					<Anchors>
 						<Anchor point="TOP">
                             <Offset>
 								<AbsDimension x="0" y="-40"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_LevelPrefixText" inherits="GameFontNormalLarge" text="Reach">
+					<Anchors>
+						<Anchor point="TOP">
+                            <Offset>
+								<AbsDimension x="0" y="-60"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_LevelSuffixText" inherits="GameFontNormalLarge" text="To begin&#xD; farming"  wordwrap="true">
+					<FontHeight val="1000"/>
+					<Anchors>
+						<Anchor point="BOTTOM">
+                            <Offset>
+								<AbsDimension x="0" y="50"/>
 							</Offset>
                         </Anchor>
 					</Anchors>
