@@ -49,3 +49,52 @@ end
 function FP:SetVersion(version)
 	_G.FarmPvPFrame_Version:SetText(version)
 end
+
+function FP:ShowHideSections()
+	local playerLevel = UnitLevel("player")
+	if playerLevel ~= 60 then
+		_G.FarmPvPFrame_conquest:Hide()
+		_G.FarmPvPFrame_conquestTexture:Hide()
+		_G.FarmPvPFrame_conquestRankTexture:Hide()
+		_G.FarmPvPFrame_conquestRank:Hide()
+
+		_G.FarmPvPFrame_honorWeeklyTotal:Hide()
+		_G.FarmPvPFrame_honorWeeklyTotalTexture:Hide()
+		_G.FarmPvPFrame_honorWeeklyTotalRankTexture:Hide()
+		_G.FarmPvPFrame_honorWeeklyTotalRank:Hide()
+
+		_G.FarmPvPFrame_honorTotal:Hide()
+		_G.FarmPvPFrame_honorTotalTexture:Hide()
+		_G.FarmPvPFrame_honorTotalRankTexture:Hide()
+		_G.FarmPvPFrame_honorTotalRank:Hide()
+
+		_G.FarmPvPFrame_Remaining:Hide()
+
+		_G.FarmPvPFrame_LevelPrefixText:Show()
+		_G.FarmPvPFrame_LevelSuffixText:Show()
+		_G.FarmPvPFrame_numberSix:Show()
+		_G.FarmPvPFrame_numberZero:Show()
+	else
+		_G.FarmPvPFrame_conquest:Show()
+		_G.FarmPvPFrame_conquestTexture:Show()
+		_G.FarmPvPFrame_conquestRankTexture:Show()
+		_G.FarmPvPFrame_conquestRank:Show()
+
+		_G.FarmPvPFrame_honorWeeklyTotal:Show()
+		_G.FarmPvPFrame_honorWeeklyTotalTexture:Show()
+		_G.FarmPvPFrame_honorWeeklyTotalRankTexture:Show()
+		_G.FarmPvPFrame_honorWeeklyTotalRank:Show()
+
+		_G.FarmPvPFrame_honorTotal:Show()
+		_G.FarmPvPFrame_honorTotalTexture:Show()
+		_G.FarmPvPFrame_honorTotalRankTexture:Show()
+		_G.FarmPvPFrame_honorTotalRank:Show()
+
+		_G.FarmPvPFrame_Remaining:Show()
+
+		_G.FarmPvPFrame_LevelPrefixText:Hide()
+		_G.FarmPvPFrame_LevelSuffixText:Hide()
+		_G.FarmPvPFrame_numberSix:Hide()
+		_G.FarmPvPFrame_numberZero:Hide()
+	end
+end
