@@ -2,128 +2,14 @@ local _G = _G
 local _, FP = ...
 _G.FarmPvP = FP
 
-local name = "Farm |cFFC41F3BP|rv|cFF0070DEP|r"
+local title = "Farm |cFFC41F3BP|rv|cFF0070DEP|r"
 local version = "v1.0.0"
 
 local totalConquestCost = 0
 local totalWeeklyHonorCost = 0
 local totalHonorCost = 0
 
-local highestWeeklyRating = FP:GetHighestWeeklyRating()
-local highestWeeklyRank = FP:GetHighestWeeklyRank(highestWeeklyRating)
-
-if IsAddOnLoaded('Farm PvP') then print(name, " by Lyci, ", version) end
-
-local frame = CreateFrame("Frame", "Farm PvP", UIParent, "BackdropTemplate")
-frame:SetFrameStrata("BACKGROUND")
-frame:SetPoint("CENTER")
-frame:SetWidth(175)
-frame:SetHeight(275)
-frame:SetResizable(true)
-frame:SetMovable(true)
-frame:EnableMouse(true)
-frame:RegisterForDrag("LeftButton")
-frame:SetScript("OnDragStart", frame.StartMoving)
-frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
-
-frame.titleBG = frame:CreateTexture(nil, "ARTWORK")
-frame.titleBG:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Header")
-frame.titleBG:SetSize(250, 64)
-frame.titleBG:SetPoint("TOP", 0, 15)
-
-frame.title = frame:CreateFontString(nil,"ARTWORK") 
-frame.title:SetFont("Fonts\\ARIALN.ttf", 16, "OUTLINE")
-frame.title:SetTextColor(1, 1, 1)
-frame.title:SetPoint("CENTER", frame.titleBG, 0, 13)
-frame.title:SetText(name)
-
-frame.version = frame:CreateFontString(nil, "ARTWORK") 
-frame.version:SetFont("Fonts\\ARIALN.ttf", 10, "OUTLINE")
-frame.version:SetTextColor(1, 1, 1, 0.4)
-frame.version:SetPoint("BOTTOMRIGHT", -10, 10)
-frame.version:SetText(version)
-
--- DYNAMIC FACTION ICON
-local playerFaction, _ = UnitFactionGroup("player")
-local factionTexture;
-if playerFaction == "Alliance" then
-	factionTexture = "Interface\\PVPFrame\\PVP-Currency-Alliance"
-else 
-	factionTexture = "Interface\\PVPFrame\\PVP-Currency-Horde"
-end
-frame.faction = frame:CreateTexture(nil, "ARTWORK")
-frame.faction:SetTexture(factionTexture)
-frame.faction:SetAlpha(0.2)
-frame.faction:SetPoint("CENTER")
-frame.faction:SetScale(3)
-
-frame.remaining = frame:CreateFontString(nil, "ARTWORK");
-frame.remaining:SetFont("Fonts\\ARIALN.ttf", 14, "OUTLINE")
-frame.remaining:SetPoint("TOP", 0, -40)
-frame.remaining:SetText("Remaining for")
-
--- TOTAL CONQUEST FOR FULL UNRANKED
-frame.conquestRankTexture = frame:CreateTexture(nil, "ARTWORK")
-frame.conquestRankTexture:SetTexture(FP.RanksIconMapping[1])
-frame.conquestRankTexture:SetPoint("LEFT", frame, 45, 90)
-frame.conquestRankTexture:SetScale(0.5)
-
-frame.conquestRank = frame:CreateFontString(nil, "ARTWORK")
-frame.conquestRank:SetFont("Fonts\\ARIALN.ttf", 12, "OUTLINE")
-frame.conquestRank:SetPoint("TOPLEFT", frame.conquestRankTexture, 45, 0)
-frame.conquestRank:SetText("Full Unranked")
-
-frame.conquest = frame:CreateFontString(nil, "ARTWORK");
-frame.conquest:SetFont("Fonts\\ARIALN.ttf", 16, "OUTLINE")
-frame.conquest:SetPoint("BOTTOMLEFT", frame.conquestRankTexture, 45, 0)
-
-frame.conquestTexture = frame:CreateTexture(nil, "ARTWORK")
-frame.conquestTexture:SetTexture("Interface\\icons\\achievement_legionpvp2tier3")
-frame.conquestTexture:SetScale(0.25)
-frame.conquestTexture:SetPoint("RIGHT", frame.conquest, 75, 0)
-
--- TOTAL HONOR FOR HIGHEST WEEKLY RANK
-frame.honorWeeklyTotalRankTexture = frame:CreateTexture(nil, "ARTWORK")
-frame.honorWeeklyTotalRankTexture:SetTexture(FP.RanksIconMapping[highestWeeklyRank])
-frame.honorWeeklyTotalRankTexture:SetPoint("LEFT", frame, 45, -25)
-frame.honorWeeklyTotalRankTexture:SetScale(0.5)
-
-frame.honorWeeklyTotalRank = frame:CreateFontString(nil, "ARTWORK")
-frame.honorWeeklyTotalRank:SetFont("Fonts\\ARIALN.ttf", 12, "OUTLINE")
-frame.honorWeeklyTotalRank:SetPoint("TOPLEFT", frame.honorWeeklyTotalRankTexture, 45, 0)
-frame.honorWeeklyTotalRank:SetText("Highest Weekly")
-
-frame.honorWeeklyTotal = frame:CreateFontString(nil, "ARTWORK")
-frame.honorWeeklyTotal:SetFont("Fonts\\ARIALN.ttf", 16, "OUTLINE")
-frame.honorWeeklyTotal:SetPoint("BOTTOMLEFT", frame.honorWeeklyTotalRankTexture,  44, 0)
-
-frame.honorWeeklyTotalTexture = frame:CreateTexture(nil, "ARTWORK")
-frame.honorWeeklyTotalTexture:SetTexture("interface\\icons\\achievement_legionpvptier4")
-frame.honorWeeklyTotalTexture:SetScale(0.25)
-frame.honorWeeklyTotalTexture:SetPoint("RIGHT", frame.honorWeeklyTotal, 75, 0)
-
--- TOTAL HONOR FOR DUELIST GEAR
-frame.honorTotalRankTexture = frame:CreateTexture(nil, "ARTWORK")
-frame.honorTotalRankTexture:SetTexture("interface\\pvpframe\\icons\\ui_rankedpvp_05_small")
-frame.honorTotalRankTexture:SetPoint("BOTTOMLEFT", frame, 45, 85)
-frame.honorTotalRankTexture:SetScale(0.5)
-
-frame.honorTotalRank = frame:CreateFontString(nil, "ARTWORK")
-frame.honorTotalRank:SetFont("Fonts\\ARIALN.ttf", 12, "OUTLINE")
-frame.honorTotalRank:SetPoint("TOPLEFT", frame.honorTotalRankTexture, 45, 0)
-frame.honorTotalRank:SetText("Full Duelist")
-
-frame.honorTotal = frame:CreateFontString(nil, "ARTWORK")
-frame.honorTotal:SetFont("Fonts\\ARIALN.ttf", 16, "OUTLINE")
-frame.honorTotal:SetPoint("BOTTOMLEFT", frame.honorTotalRankTexture,  44, 0)
-
-frame.honorTotalTexture = frame:CreateTexture(nil, "ARTWORK")
-frame.honorTotalTexture:SetTexture("interface\\icons\\achievement_legionpvptier4")
-frame.honorTotalTexture:SetScale(0.25)
-frame.honorTotalTexture:SetPoint("RIGHT", frame.honorTotal, 75, 0)
-
--- BACKGROUND TEXTURE AND BORDER
-frame.backdropInfo = frame:SetBackdrop({
+FP.Backdrop = {
 	bgFile = "Interface\\FrameGeneral\\UIFrameNecrolordBackground",
  	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
  	tile = true,
@@ -131,22 +17,9 @@ frame.backdropInfo = frame:SetBackdrop({
  	tileSize = 64,
  	edgeSize = 8,
  	insets = { left = 1, right = 1, top = 1, bottom = 1 },
-})
+}
 
-frame:SetPoint("CENTER",0,0)
-frame:Show()
-
-function frame:OnEvent(event, ...)
-	self[event](self, event, ...)
-end
-
-function frame:PLAYER_EQUIPMENT_CHANGED(event, equipmentSlot, hasCurrent)
-	if hasCurrent == false then
-		frame:TotalUpgradeCost()
-	end
-end
-
-function frame:TotalUpgradeCost()
+function FP:TotalUpgradeCost()
 	local honorInfo = C_CurrencyInfo.GetCurrencyInfo(1792)
 
 	totalConquestCost = 0
@@ -194,56 +67,71 @@ function frame:TotalUpgradeCost()
 		end
 	end
 
-	frame.conquest:SetText(string.commavalue(totalConquestCost))
+	FP:SetSectionText(_G.FarmPvPFrame_conquest, _G.FarmPvPFrame_conquestTexture, totalConquestCost)
+	FP:SetSectionText(_G.FarmPvPFrame_honorWeeklyTotal, _G.FarmPvPFrame_honorWeeklyTotalTexture, totalWeeklyHonorCost)
+	FP:SetSectionText(_G.FarmPvPFrame_honorTotal, _G.FarmPvPFrame_honorTotalTexture, totalHonorCost)
+end
 
-	if totalWeeklyHonorCost <= 0 then
-		frame.honorWeeklyTotal:SetText("-")
-		frame.honorWeeklyTotalTexture:Hide()
-	else
-		frame.honorWeeklyTotal:SetText(string.commavalue(totalWeeklyHonorCost))
-	end
+function FP:OnEvent(event, ...)
+	self[event](self, event, ...)
+end
 
-	if totalHonorCost <= 0 then
-		frame.honorTotal:SetText("-")
-		frame.honorTotalTexture:Hide()
-	else
-		frame.honorTotal:SetText(string.commavalue(totalHonorCost))
+function FP:ADDON_LOADED(event, name, ...)
+	if name == 'FarmPvP' then
+		print(title, version, "/fp or /farmpvp for commands")
 	end
 end
 
-function frame:CURRENCY_DISPLAY_UPDATE(event, currencyType, ...)
+function FP:PLAYER_EQUIPMENT_CHANGED(event, equipmentSlot, hasCurrent)
+	if hasCurrent == false then
+		self:TotalUpgradeCost()
+	end
+end
+
+function FP:CURRENCY_DISPLAY_UPDATE(event, currencyType, ...)
 	if currencyType == 1792 or currencyType == 1602 then
-		frame:TotalUpgradeCost()
+		self:TotalUpgradeCost()
 	end
 end
 
-frame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-frame:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
-frame:SetScript("OnEvent", frame.OnEvent)
+function FP:OnLoad(self)
+	self:RegisterEvent("ADDON_LOADED")
+	self:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
+	self:RegisterForDrag("LeftButton")
 
-frame:TotalUpgradeCost()
+	FP:SetTitle(title)
+	FP:SetVersion(version)
+	FP:SetHighestWeeklyRankTexture()
+	FP:SetPlayerFactionTexture()
+	FP:TotalUpgradeCost()
+
+	_G.FarmPvPFrame:Show()
+end
+
 
 SLASH_FARMPVP1, SLASH_FARMPVP2 = '/fp', '/farmpvp';
 local function handler(msg, editBox)
     if msg == 'show' then
-		frame:Show()
+		_G.FarmPvPFrame:Show()
 	elseif msg == 'hide' then
-		frame:Hide()
+		_G.FarmPvPFrame:Hide()
 	elseif msg == 'calc' or msg == 'calculate' then
-		frame:TotalUpgradeCost()
+		FP:TotalUpgradeCost()
 	elseif msg == 'lock' then
-		if (frame:IsMovable()) then
-			frame:SetMovable(false)
-			frame:EnableMouse(false)
-			print(name, " is now locked. Type /fp lock again to unlock it.")
+		if (_G.FarmPvPFrame:IsMovable()) then
+			_G.FarmPvPFrame:SetMovable(false)
+			_G.FarmPvPFrame:EnableMouse(false)
+			print(title, " is now locked. Type /fp lock again to unlock it.")
 		else
-			frame:SetMovable(true)
-			frame:EnableMouse(true)
-			print(name, " is now unlocked. Type /fp lock again to lock it.")
+			_G.FarmPvPFrame:SetMovable(true)
+			_G.FarmPvPFrame:EnableMouse(true)
+			print(title, " is now unlocked. Type /fp lock again to lock it.")
 		end
 	else 
-		print(name)
+		print(title)
 		print("A list of commands. Start with /fp or /farmpvp and then \n- show \n- hide \n- calc or calculate \n- lock")
     end
 end
+
 SlashCmdList["FARMPVP"] = handler;

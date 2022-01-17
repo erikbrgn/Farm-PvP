@@ -16,3 +16,36 @@ function FP:GetHighestWeeklyRank(highestRating)
 		end
 	end
 end
+
+function FP:SetSectionText(target, textureTarget, value)
+	if value <= 0 then
+		target:SetText("-")
+		if textureTarget then
+			textureTarget:Hide()
+		end
+	else
+		target:SetText(string.commavalue(value))
+		if textureTarget then
+			textureTarget:Show()
+		end
+	end
+end
+
+function FP:SetPlayerFactionTexture()
+	local playerFaction, _ = UnitFactionGroup("player")
+	_G.FarmPvPFrame_Faction:SetTexture(self.FactionTextures[playerFaction])
+end
+
+function FP:SetHighestWeeklyRankTexture()
+	local highestWeeklyRating = self:GetHighestWeeklyRating()
+	local highestWeeklyRank = self:GetHighestWeeklyRank(highestWeeklyRating)
+	_G.FarmPvPFrame_honorWeeklyTotalRankTexture:SetTexture(self.RanksIconMapping[highestWeeklyRank])
+end
+
+function FP:SetTitle(title)
+	_G.FarmPvPFrame_Title:SetText(title)
+end
+
+function FP:SetVersion(version)
+	_G.FarmPvPFrame_Version:SetText(version)
+end

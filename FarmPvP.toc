@@ -3,7 +3,4 @@
 ## Author: Erikbrgn
 ## Version: 1.0.0
 
-Util.lua
-FarmPvPStructures.lua
-FarmPvPFunctions.lua
-FarmPvP.lua
+FarmPvP.xml
