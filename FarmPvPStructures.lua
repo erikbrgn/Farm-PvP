@@ -56,3 +56,8 @@ FP.RanksIconMapping = {
 	[8] = "interface\\pvpframe\\icons\\ui_rankedpvp_05_small",
 	[9] = "interface\\pvpframe\\icons\\ui_rankedpvp_06_small",
 }
+
+FP.FactionTextures = {
+	["Alliance"] = "Interface\\PVPFrame\\PVP-Currency-Alliance",
+	["Horde"] = "Interface\\PVPFrame\\PVP-Currency-Horde"
+}

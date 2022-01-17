@@ -1,0 +1,190 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+
+    <Script file="Util.lua"/>
+	<Script file="FarmPvPStructures.lua"/>
+	<Script file="FarmPvPFunctions.lua"/>
+	<Script file="FarmPvP.lua"/>
+
+	<Frame name="FarmPvPFrame" inherits="BackdropTemplate" resizable="false" movable="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="175" y="275"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad inherit="prepend">FarmPvP:OnLoad(self)</OnLoad>
+			<OnEvent>FarmPvP:OnEvent(event, ...)</OnEvent>
+			<!-- <OnShow>PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)</OnShow> -->
+			<OnDragStart>self:StartMoving()</OnDragStart>
+			<OnDragStop>self:StopMovingOrSizing()</OnDragStop>
+		</Scripts>
+		<KeyValues>
+			<KeyValue key="backdropInfo" value="FarmPvP.Backdrop" type="global"/>
+		</KeyValues>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parent_Header" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="250" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+                <Texture name="$parent_Faction" file="Interface\PVPFrame\PVP-Currency-Horde" scale="3" alpha="0.2">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                        
+				</Texture>
+                <Texture name="$parent_conquestRankTexture" file="interface\pvpframe\icons\ui_rankedpvp_01_small" scale="0.5">
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="45" y="90"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                 
+				</Texture>
+                <FontString name="$parent_conquest" inherits="GameFontNormal" text="-">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent_conquestRankTexture">
+                            <Offset>
+								<AbsDimension x="45" y="0"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+                <Texture name="$parent_conquestTexture" file="Interface\icons\achievement_legionpvp2tier3" scale="0.25">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent_conquest">
+							<Offset>
+								<AbsDimension x="75" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                 
+				</Texture>
+                <Texture name="$parent_honorWeeklyTotalRankTexture" file="interface\pvpframe\icons\ui_rankedpvp_01_small" scale="0.5">
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="45" y="-25"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                 
+				</Texture>
+                <FontString name="$parent_honorWeeklyTotal" inherits="GameFontNormal" text="-">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent_honorWeeklyTotalRankTexture">
+                            <Offset>
+								<AbsDimension x="45" y="0"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+                <Texture name="$parent_honorWeeklyTotalTexture" file="interface\icons\achievement_legionpvptier4" scale="0.25">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent_honorWeeklyTotal">
+							<Offset>
+								<AbsDimension x="75" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                 
+				</Texture>
+                <Texture name="$parent_honorTotalRankTexture" file="interface\pvpframe\icons\ui_rankedpvp_05_small" scale="0.5">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="45" y="85"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                 
+				</Texture>
+                <FontString name="$parent_honorTotal" inherits="GameFontNormal" text="-">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent_honorTotalRankTexture">
+                            <Offset>
+								<AbsDimension x="45" y="0"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+                <Texture name="$parent_honorTotalTexture" file="interface\icons\achievement_legionpvptier4" scale="0.25">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent_honorTotal">
+							<Offset>
+								<AbsDimension x="75" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>                 
+				</Texture>
+                <FontString name="$parent_conquestRank" inherits="GameFontNormal" text="Full Unranked">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_conquestRankTexture">
+                            <Offset>
+								<AbsDimension x="45" y="0"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="$parent_honorWeeklyTotalRank" inherits="GameFontNormal" text="Highest Weekly">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_honorWeeklyTotalRankTexture">
+                            <Offset>
+								<AbsDimension x="45" y="0"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="$parent_honorTotalRank" inherits="GameFontNormal" text="Full Duelist ">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_honorTotalRankTexture">
+                            <Offset>
+								<AbsDimension x="45" y="0"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_Title" inherits="GameFontNormal" outline="NORMAL" text="Farm PvP">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent_Header">
+                            <Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="$parent_Version" inherits="GameFontNormalSmall">
+					<Color r="1" g="1" b="1" a="0.4"/>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+                            <Offset>
+								<AbsDimension x="-10" y="10"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="$parent_Remaining" inherits="GameFontNormal" text="Remaining for">
+					<Anchors>
+						<Anchor point="TOP">
+                            <Offset>
+								<AbsDimension x="0" y="-40"/>
+							</Offset>
+                        </Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>
