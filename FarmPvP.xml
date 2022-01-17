@@ -186,5 +186,19 @@
 				</FontString>
 			</Layer>
 		</Layers>
+		<Frames>
+			<Button name="$parent_CloseButton" inherits="UIPanelCloseButton">
+				<HitRectInsets>
+					<AbsInset left="5" right="5" top="5" bottom="5"/>
+				</HitRectInsets>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
 	</Frame>
 </Ui>
