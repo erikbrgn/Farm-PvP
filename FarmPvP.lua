@@ -94,6 +94,10 @@ function FP:CURRENCY_DISPLAY_UPDATE(event, currencyType, ...)
 	end
 end
 
+function FP:PVP_RATED_STATS_UPDATE(event, ...)
+	FP:TotalUpgradeCost()
+end
+
 function FP:PLAYER_LEVEL_CHANGED(event, ...)
 	FP:ShowHideSections()
 end
@@ -103,6 +107,7 @@ function FP:OnLoad(self)
 	self:RegisterForDrag("LeftButton")
 	self:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
+	self:RegisterEvent("PVP_RATED_STATS_UPDATE")
 	self:RegisterEvent("PLAYER_LEVEL_CHANGED")
 
 	FP:SetTitle(title)
