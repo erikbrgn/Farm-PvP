@@ -29,6 +29,8 @@ function FP:TotalUpgradeCost()
 	local highestWeeklyRating = FP:GetHighestWeeklyRating()
 	local highestWeeklyRank = FP:GetHighestWeeklyRank(highestWeeklyRating)
 
+	FP:SetHighestWeeklyRankTexture()
+
 	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Wrist", "Waist", "Legs", "Feet", "Hands", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand"}
 	for index, slotName in ipairs(slots) do
 		local slotID = GetInventorySlotInfo(slotName .. "Slot")
@@ -95,11 +97,19 @@ function FP:CURRENCY_DISPLAY_UPDATE(event, currencyType, ...)
 end
 
 function FP:PVP_RATED_STATS_UPDATE(event, ...)
-	FP:TotalUpgradeCost()
+	self:TotalUpgradeCost()
 end
 
 function FP:PLAYER_LEVEL_CHANGED(event, ...)
 	FP:ShowHideSections()
+end
+
+function FP:PLAYER_LOGIN(event, ...)
+	FP:SetPlayerFactionTexture()
+	FP:ShowHideSections()
+	-- We can rely on this request to trigger PVP_RATED_STATS_UPDATE
+	-- which in turn will update the total upgrade cost.
+	RequestRatedInfo()
 end
 
 function FP:OnLoad(self)
@@ -109,14 +119,10 @@ function FP:OnLoad(self)
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
 	self:RegisterEvent("PVP_RATED_STATS_UPDATE")
 	self:RegisterEvent("PLAYER_LEVEL_CHANGED")
+	self:RegisterEvent("PLAYER_LOGIN")
 
 	FP:SetTitle(title)
 	FP:SetVersion(version)
-	FP:SetHighestWeeklyRankTexture()
-	FP:SetPlayerFactionTexture()
-	FP:TotalUpgradeCost()
-
-	FP:ShowHideSections()
 
 	_G.FarmPvPFrame:Show()
 end
