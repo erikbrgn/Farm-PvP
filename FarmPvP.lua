@@ -21,10 +21,11 @@ FP.Backdrop = {
 
 function FP:TotalUpgradeCost()
 	local honorInfo = C_CurrencyInfo.GetCurrencyInfo(1792)
+	local conquestInfo = C_CurrencyInfo.GetCurrencyInfo(1602)
 
-	totalConquestCost = 0
-	totalWeeklyHonorCost = -honorInfo.quantity;
-	totalHonorCost = -honorInfo.quantity;
+	totalConquestCost = -conquestInfo.quantity
+	totalWeeklyHonorCost = -honorInfo.quantity
+	totalHonorCost = -honorInfo.quantity
 
 	local highestWeeklyRating = FP:GetHighestWeeklyRating()
 	local highestWeeklyRank = FP:GetHighestWeeklyRank(highestWeeklyRating)
