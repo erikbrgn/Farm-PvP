@@ -82,7 +82,17 @@ end
 function FP:ADDON_LOADED(event, name, ...)
 	if name == 'FarmPvP' then
 		print(title, version, "/fp or /farmpvp for commands")
+
+		if not _G.FarmPvPSettings then
+			_G.FarmPvPSettings = FP.DefaultConfig
+		end
+
+		FP.Settings = _G.FarmPvPSettings
 	end
+end
+
+function FP:PLAYER_LOGOUT()
+	_G.FarmPvPSettings = FP.Settings
 end
 
 function FP:PLAYER_EQUIPMENT_CHANGED(event, equipmentSlot, hasCurrent)
@@ -99,6 +109,11 @@ end
 
 function FP:PVP_RATED_STATS_UPDATE(event, ...)
 	self:TotalUpgradeCost()
+	if FP.Settings.Mode == 'compact' then
+		FP:Minimize()
+		_G.FarmPvPFrame_MaximizeMinimizeButton.MaximizeButton:Show()
+		_G.FarmPvPFrame_MaximizeMinimizeButton.MinimizeButton:Hide()
+	end
 end
 
 function FP:PLAYER_LEVEL_CHANGED(event, ...)
@@ -107,10 +122,11 @@ end
 
 function FP:PLAYER_LOGIN(event, ...)
 	FP:SetPlayerFactionTexture()
-	FP:ShowHideSections()
 	-- We can rely on this request to trigger PVP_RATED_STATS_UPDATE
 	-- which in turn will update the total upgrade cost.
 	RequestRatedInfo()
+
+	FP:ShowHideSections()
 end
 
 function FP:OnLoad(self)
@@ -121,12 +137,29 @@ function FP:OnLoad(self)
 	self:RegisterEvent("PVP_RATED_STATS_UPDATE")
 	self:RegisterEvent("PLAYER_LEVEL_CHANGED")
 	self:RegisterEvent("PLAYER_LOGIN")
+	self:RegisterEvent("PLAYER_LOGOUT")
 
 	FP:SetTitle(title)
 	FP:SetVersion(version)
-
+	FP:HookButtons()
+	FP:SetMode()
+	
 	_G.FarmPvPFrame:Show()
+
 end
+
+function FP:SetMode()
+	_G.FarmPvPFrame_MaximizeMinimizeButton.MinimizeButton:HookScript("OnClick", function ()
+		FP.Settings.Mode = 'compact'
+		FP:Minimize()
+	end)
+
+	_G.FarmPvPFrame_MaximizeMinimizeButton.MaximizeButton:HookScript("OnClick", function ()
+		FP.Settings.Mode = 'default'
+		FP:Maximize()
+	end)
+end
+
 
 
 SLASH_FARMPVP1, SLASH_FARMPVP2 = '/fp', '/farmpvp';

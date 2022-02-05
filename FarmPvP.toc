@@ -2,5 +2,6 @@
 ## Title: Farm PvP
 ## Author: Erikbrgn
 ## Version: 1.0.1
+## SavedVariables: FarmPvPSettings
 
 FarmPvP.xml
