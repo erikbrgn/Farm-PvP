@@ -61,3 +61,7 @@ FP.FactionTextures = {
 	["Alliance"] = "Interface\\PVPFrame\\PVP-Currency-Alliance",
 	["Horde"] = "Interface\\PVPFrame\\PVP-Currency-Horde"
 }
+
+FP.DefaultConfig = {
+	["Mode"] = "default"
+}

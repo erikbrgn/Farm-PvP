@@ -238,6 +238,18 @@
 					</Anchor>
 				</Anchors>
 			</Button>
+			<Button name="$parent_MaximizeMinimizeButton" inherits="MaximizeMinimizeButtonFrameTemplate">
+				<HitRectInsets>
+					<AbsInset left="5" right="5" top="5" bottom="5"/>
+				</HitRectInsets>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
 		</Frames>
 	</Frame>
 </Ui>
