@@ -25,7 +25,7 @@ function FP:SetSectionText(target, textureTarget, value)
 		end
 	else
 		target:SetText(string.commavalue(value))
-		if textureTarget then
+		if textureTarget and FP.Settings.Mode == 'default' then
 			textureTarget:Show()
 		end
 	end
@@ -53,27 +53,28 @@ end
 function FP:ShowHideSections()
 	local playerLevel = UnitLevel("player")
 	if playerLevel ~= 60 then
-		_G.FarmPvPFrame_conquest:Hide()
-		_G.FarmPvPFrame_conquestTexture:Hide()
-		_G.FarmPvPFrame_conquestRankTexture:Hide()
-		_G.FarmPvPFrame_conquestRank:Hide()
+			_G.FarmPvPFrame_conquest:Hide()
+			_G.FarmPvPFrame_conquestTexture:Hide()
+			_G.FarmPvPFrame_conquestRankTexture:Hide()
+			_G.FarmPvPFrame_conquestRank:Hide()
+	
+			_G.FarmPvPFrame_honorWeeklyTotal:Hide()
+			_G.FarmPvPFrame_honorWeeklyTotalTexture:Hide()
+			_G.FarmPvPFrame_honorWeeklyTotalRankTexture:Hide()
+			_G.FarmPvPFrame_honorWeeklyTotalRank:Hide()
+	
+			_G.FarmPvPFrame_honorTotal:Hide()
+			_G.FarmPvPFrame_honorTotalTexture:Hide()
+			_G.FarmPvPFrame_honorTotalRankTexture:Hide()
+			_G.FarmPvPFrame_honorTotalRank:Hide()
+	
+			_G.FarmPvPFrame_Remaining:Hide()
 
-		_G.FarmPvPFrame_honorWeeklyTotal:Hide()
-		_G.FarmPvPFrame_honorWeeklyTotalTexture:Hide()
-		_G.FarmPvPFrame_honorWeeklyTotalRankTexture:Hide()
-		_G.FarmPvPFrame_honorWeeklyTotalRank:Hide()
+			_G.FarmPvPFrame_LevelPrefixText:Show()
+			_G.FarmPvPFrame_LevelSuffixText:Show()
+			_G.FarmPvPFrame_numberSix:Show()
+			_G.FarmPvPFrame_numberZero:Show()
 
-		_G.FarmPvPFrame_honorTotal:Hide()
-		_G.FarmPvPFrame_honorTotalTexture:Hide()
-		_G.FarmPvPFrame_honorTotalRankTexture:Hide()
-		_G.FarmPvPFrame_honorTotalRank:Hide()
-
-		_G.FarmPvPFrame_Remaining:Hide()
-
-		_G.FarmPvPFrame_LevelPrefixText:Show()
-		_G.FarmPvPFrame_LevelSuffixText:Show()
-		_G.FarmPvPFrame_numberSix:Show()
-		_G.FarmPvPFrame_numberZero:Show()
 	else
 		_G.FarmPvPFrame_conquest:Show()
 		_G.FarmPvPFrame_conquestTexture:Show()
