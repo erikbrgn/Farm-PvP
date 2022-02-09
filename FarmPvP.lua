@@ -3,7 +3,7 @@ local _, FP = ...
 _G.FarmPvP = FP
 
 local title = "Farm |cFFC41F3BP|rv|cFF0070DEP|r"
-local version = "v1.1.1"
+local version = "v1.2.0"
 
 local totalConquestCost = 0
 local totalWeeklyHonorCost = 0
