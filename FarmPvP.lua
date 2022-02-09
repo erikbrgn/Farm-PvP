@@ -137,6 +137,7 @@ function FP:PLAYER_LOGIN(event, ...)
 	RequestRatedInfo()
 
 	FP:ShowHideSections()
+	FP:SetLocation()
 end
 
 function FP:OnLoad(self)
