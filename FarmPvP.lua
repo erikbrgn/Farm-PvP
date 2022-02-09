@@ -30,6 +30,8 @@ function FP:TotalUpgradeCost()
 	local highestWeeklyRating = FP:GetHighestWeeklyRating()
 	local highestWeeklyRank = FP:GetHighestWeeklyRank(highestWeeklyRating)
 
+	local showCompleteSection = true
+
 	FP:SetHighestWeeklyRankTexture()
 
 	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Wrist", "Waist", "Legs", "Feet", "Hands", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand"}
@@ -58,6 +60,10 @@ function FP:TotalUpgradeCost()
 								totalWeeklyHonorCost = totalWeeklyHonorCost + itemUpgradeCostTable[i]
 							end
 						end
+
+						if itemRank < 8 then
+							showCompleteSection = false
+						end
 					end
 				-- We want to disregard legendaries and their slot(s).
 				elseif itemQuality == 5 then
@@ -73,6 +79,10 @@ function FP:TotalUpgradeCost()
 	FP:SetSectionText(_G.FarmPvPFrame_conquest, _G.FarmPvPFrame_conquestTexture, totalConquestCost)
 	FP:SetSectionText(_G.FarmPvPFrame_honorWeeklyTotal, _G.FarmPvPFrame_honorWeeklyTotalTexture, totalWeeklyHonorCost)
 	FP:SetSectionText(_G.FarmPvPFrame_honorTotal, _G.FarmPvPFrame_honorTotalTexture, totalHonorCost)
+
+	if showCompleteSection then
+		FP:ShowCompleteSection()
+	end
 end
 
 function FP:OnEvent(event, ...)
@@ -152,11 +162,13 @@ function FP:SetMode()
 	_G.FarmPvPFrame_MaximizeMinimizeButton.MinimizeButton:HookScript("OnClick", function ()
 		FP.Settings.Mode = 'compact'
 		FP:Minimize()
+		FP:TotalUpgradeCost()
 	end)
 
 	_G.FarmPvPFrame_MaximizeMinimizeButton.MaximizeButton:HookScript("OnClick", function ()
 		FP.Settings.Mode = 'default'
 		FP:Maximize()
+		FP:TotalUpgradeCost()
 	end)
 end
 

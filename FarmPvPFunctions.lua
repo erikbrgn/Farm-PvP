@@ -207,3 +207,18 @@ function FP:RepositionSection(id, position)
 	end
 
 end
+
+function FP:HideSection(id)
+	_G["FarmPvPFrame_" .. id]:Hide()
+	_G["FarmPvPFrame_" .. id .. "Texture"]:Hide()
+	_G["FarmPvPFrame_" .. id .. "Rank"]:Hide()
+	_G["FarmPvPFrame_" .. id .. "RankTexture"]:Hide()
+end
+
+function FP:ShowCompleteSection()
+	FP:HideSection("conquest")
+	FP:HideSection("honorWeeklyTotal")
+	FP:HideSection("honorTotal")
+	_G.FarmPvPFrame_Remaining:Hide()
+	_G.FarmPvPFrame_CompleteText:Show()
+end
