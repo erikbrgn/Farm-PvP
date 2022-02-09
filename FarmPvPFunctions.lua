@@ -222,3 +222,14 @@ function FP:ShowCompleteSection()
 	_G.FarmPvPFrame_Remaining:Hide()
 	_G.FarmPvPFrame_CompleteText:Show()
 end
+
+function FP:SetLocation()
+	if FP.Settings.Location ~= nil then
+		_G.FarmPvPFrame:SetPoint(unpack(FP.Settings.Location))
+	end
+
+	_G.FarmPvPFrame:HookScript("OnDragStop", function (self)
+		local point, relativeTo, relativePoint, xOfs, yOfs = self:GetPoint()
+		FP.Settings.Location = {point, relativeTo, relativePoint, xOfs, yOfs}
+	end)
+end
