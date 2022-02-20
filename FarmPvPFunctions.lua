@@ -215,12 +215,31 @@ function FP:HideSection(id)
 	_G["FarmPvPFrame_" .. id .. "RankTexture"]:Hide()
 end
 
+function FP:ShowSection(id)
+	_G["FarmPvPFrame_" .. id]:Show()
+	_G["FarmPvPFrame_" .. id .. "RankTexture"]:Show()
+	if FP.Settings.Mode ~= 'compact' then
+		_G["FarmPvPFrame_" .. id .. "Texture"]:Show()
+		_G["FarmPvPFrame_" .. id .. "Rank"]:Show()
+	end
+end
+
 function FP:ShowCompleteSection()
 	FP:HideSection("conquest")
 	FP:HideSection("honorWeeklyTotal")
 	FP:HideSection("honorTotal")
 	_G.FarmPvPFrame_Remaining:Hide()
 	_G.FarmPvPFrame_CompleteText:Show()
+end
+
+function FP:HideCompleteSection()
+	FP:ShowSection("conquest")
+	FP:ShowSection("honorWeeklyTotal")
+	FP:ShowSection("honorTotal")
+	if FP.Settings.Mode ~= 'compact' then
+		_G.FarmPvPFrame_Remaining:Show()
+	end	
+	_G.FarmPvPFrame_CompleteText:Hide()
 end
 
 function FP:SetLocation()
