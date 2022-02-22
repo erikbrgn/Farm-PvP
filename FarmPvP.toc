@@ -1,4 +1,4 @@
-## Interface: 90105
+## Interface: 902000
 ## Title: Farm PvP
 ## Author: Erikbrgn
 ## Version: 1.2.0
