@@ -30,9 +30,9 @@ function FP:TotalUpgradeCost()
 	local highestWeeklyRating = FP:GetHighestWeeklyRating()
 	local highestWeeklyRank = FP:GetHighestWeeklyRank(highestWeeklyRating)
 
-	local showCompleteSection = true
-
+	
 	FP:SetHighestWeeklyRankTexture()
+	FP:ShowCompleteSection()
 
 	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Wrist", "Waist", "Legs", "Feet", "Hands", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand"}
 	for index, slotName in ipairs(slots) do
@@ -62,7 +62,7 @@ function FP:TotalUpgradeCost()
 						end
 
 						if itemRank < 8 then
-							showCompleteSection = false
+							FP:HideCompleteSection()
 						end
 					end
 				-- We want to disregard legendaries and their slot(s).
@@ -79,10 +79,6 @@ function FP:TotalUpgradeCost()
 	FP:SetSectionText(_G.FarmPvPFrame_conquest, _G.FarmPvPFrame_conquestTexture, totalConquestCost)
 	FP:SetSectionText(_G.FarmPvPFrame_honorWeeklyTotal, _G.FarmPvPFrame_honorWeeklyTotalTexture, totalWeeklyHonorCost)
 	FP:SetSectionText(_G.FarmPvPFrame_honorTotal, _G.FarmPvPFrame_honorTotalTexture, totalHonorCost)
-
-	if showCompleteSection then
-		FP:ShowCompleteSection()
-	end
 end
 
 function FP:OnEvent(event, ...)
