@@ -79,6 +79,10 @@ function FP:TotalUpgradeCost()
 	FP:SetSectionText(_G.FarmPvPFrame_conquest, _G.FarmPvPFrame_conquestTexture, totalConquestCost)
 	FP:SetSectionText(_G.FarmPvPFrame_honorWeeklyTotal, _G.FarmPvPFrame_honorWeeklyTotalTexture, totalWeeklyHonorCost)
 	FP:SetSectionText(_G.FarmPvPFrame_honorTotal, _G.FarmPvPFrame_honorTotalTexture, totalHonorCost)
+
+	if UnitLevel("player") ~= 60 then
+		_G.FarmPvPFrame_CompleteText:Hide()
+	end
 end
 
 function FP:OnEvent(event, ...)
@@ -166,6 +170,7 @@ function FP:SetMode()
 		FP.Settings.Mode = 'default'
 		FP:Maximize()
 		FP:TotalUpgradeCost()
+		FP:ShowHideSections()
 	end)
 end
 
