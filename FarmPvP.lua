@@ -45,7 +45,7 @@ function FP:TotalUpgradeCost()
 				local ilvl = item:GetCurrentItemLevel()
 				local itemQuality = item:GetItemQuality()
 				-- @todo: Refactor into a better way of extracting PvP items.
-				if itemName:startswith("Unchained Gladiator's") then
+				if itemName:startswith("Cosmic Gladiator's") then
 					local itemRank = FP.RanksItemLevelTable[ilvl]
 					local itemUpgradeCostTable = FP.ItemsUpgradeCostTable[slotName]
 					if itemUpgradeCostTable then
@@ -83,6 +83,9 @@ function FP:TotalUpgradeCost()
 	if UnitLevel("player") ~= 60 then
 		_G.FarmPvPFrame_CompleteText:Hide()
 	end
+
+	-- fixme: remove this
+	FP:HideCompleteSection()
 end
 
 function FP:OnEvent(event, ...)
