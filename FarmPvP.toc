@@ -1,7 +1,7 @@
-## Interface: 902000
+## Interface: 90200
 ## Title: Farm PvP
 ## Author: Erikbrgn
-## Version: 1.2.1
+## Version: 1.2.2
 ## SavedVariables: FarmPvPSettings
 
 FarmPvP.xml
