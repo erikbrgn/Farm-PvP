@@ -204,7 +204,7 @@
                         </Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="$parent_LevelPrefixText" inherits="GameFontNormalLarge" text="Reach">
+				<FontString name="$parent_LevelPrefixText" inherits="GameFontNormalLarge" text="Reach" hidden="true">
 					<Anchors>
 						<Anchor point="TOP">
                             <Offset>
@@ -213,7 +213,7 @@
                         </Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="$parent_LevelSuffixText" inherits="GameFontNormalLarge" text="To begin&#xD; farming"  wordwrap="true">
+				<FontString name="$parent_LevelSuffixText" inherits="GameFontNormalLarge" text="To begin&#xD; farming"  wordwrap="true" hidden="true">
 					<FontHeight val="1000"/>
 					<Anchors>
 						<Anchor point="BOTTOM">
