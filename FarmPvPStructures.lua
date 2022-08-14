@@ -1,6 +1,8 @@
 local _G = _G
 local _, FP = ...
 
+FP.SeasonName = 'Eternal'
+
 FP.ItemsUpgradeCostTable = {
 	--First index is always conquest cost.
 	["Head"] = {875, 775, 925, 1075, 1225, 1375, 1525, 1825},

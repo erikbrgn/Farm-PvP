@@ -45,7 +45,7 @@ function FP:TotalUpgradeCost()
 				local ilvl = item:GetCurrentItemLevel()
 				local itemQuality = item:GetItemQuality()
 				-- @todo: Refactor into a better way of extracting PvP items.
-				if itemName:startswith("Cosmic Gladiator's") then
+				if itemName:startswith(FP.SeasonName .. " " .. "Gladiator's") then
 					local itemRank = FP.RanksItemLevelTable[ilvl]
 					local itemUpgradeCostTable = FP.ItemsUpgradeCostTable[slotName]
 					if itemUpgradeCostTable then
